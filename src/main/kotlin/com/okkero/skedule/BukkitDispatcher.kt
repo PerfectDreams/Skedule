@@ -30,7 +30,7 @@ class BukkitDispatcher(val plugin: JavaPlugin, val async: Boolean = false) : Cor
             else
                 bukkitScheduler::runTask
 
-    override fun scheduleResumeAfterDelay(time: Long, unit: TimeUnit, continuation: CancellableContinuation<Unit>) {
+    fun scheduleResumeAfterDelay(time: Long, unit: TimeUnit, continuation: CancellableContinuation<Unit>) {
         runTaskLater(plugin, Runnable { continuation.apply { resumeUndispatched(Unit) } }, unit.toBukkitTicks(time))
     }
 
